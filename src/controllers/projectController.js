@@ -1,6 +1,9 @@
 // controllers/projectController.js
-
-const { Task, User, State, Epic, Project, TaskAssignment } = require('../entity/Associations');
+const Epic = require('../entity/Epic');
+const Project = require('../entity/Projects');
+const User = require('../entity/User');
+const Task = require('../entity/Task');
+const State = require('../entity/State');
 
 
 exports.createProject = async (req, res) => {
