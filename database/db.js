@@ -7,6 +7,7 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD, // Contraseña
   {
     host: process.env.DB_HOST,
+    port: process.env.DB_PORT, // Especifica el puerto aquí
     dialect: process.env.DB_DIALECT, // 'mysql' o 'postgres'
     logging: false, // Deshabilita el logging de SQL en la consola
   }
