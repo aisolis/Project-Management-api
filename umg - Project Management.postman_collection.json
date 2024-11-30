@@ -1,0 +1,950 @@
+{
+	"info": {
+		"_postman_id": "fd37b5f1-e93f-4c56-99aa-26156741ecc5",
+		"name": "umg - Project Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29179070"
+	},
+	"item": [
+		{
+			"name": "User requests",
+			"item": [
+				{
+					"name": "Register new users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"jdoe\",\n    \"password_hash\": \"password123\",\n    \"email\": \"jdoe@example.com\",\n    \"name\": \"John Doe\",\n    \"role\": \"USER\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an user by Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"jdoe_updated\",\n    \"email\": \"jdoe_updated@example.com\",\n    \"name\": \"John Doe Updated\",\n    \"role\": \"ADMIN\",\n    \"password_hash\": \"newpassword123\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an user by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{userId}}/assigned-tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{userId}}",
+								"assigned-tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## **Usuarios**\n\n### **1\\. Registrar un Nuevo Usuario**\n\n- **Descripción:** Registra un nuevo usuario en el sistema.\n    \n- **Método:** `POST`\n    \n- **Endpoint:** `/api/users/register`\n    \n\n**cURL:**\n\n```\ncurl -X POST \\\n  http://localhost:3000/api/users/register \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"username\": \"jdoe\",\n    \"password_hash\": \"password123\",\n    \"email\": \"jdoe@example.com\",\n    \"name\": \"John Doe\",\n    \"role\": \"USER\"\n  }'\n\n ```\n\n---\n\n### **2\\. Obtener Todos los Usuarios**\n\n- **Descripción:** Recupera una lista de todos los usuarios registrados.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/users`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/users\n\n ```\n\n---\n\n### **3\\. Obtener un Usuario por ID**\n\n- **Descripción:** Recupera los detalles de un usuario específico por su ID.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/users/:userId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/users/{{userId}}\n\n ```\n\n**Nota:** Reemplaza `{{userId}}` con el ID real del usuario.\n\n---\n\n### **4\\. Actualizar un Usuario**\n\n- **Descripción:** Actualiza la información de un usuario existente.\n    \n- **Método:** `PUT`\n    \n- **Endpoint:** `/api/users/:userId`\n    \n\n**cURL:**\n\n```\ncurl -X PUT \\\n  http://localhost:3000/api/users/{{userId}} \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"username\": \"jdoe_updated\",\n    \"email\": \"jdoe_updated@example.com\",\n    \"name\": \"John Doe Updated\",\n    \"role\": \"ADMIN\",\n    \"password_hash\": \"newpassword123\"\n  }'\n\n ```\n\n**Nota:** Reemplaza `{{userId}}` con el ID real del usuario. Incluye solo los campos que deseas actualizar.\n\n---\n\n### **5\\. Eliminar un Usuario**\n\n- **Descripción:** Elimina un usuario del sistema.\n    \n- **Método:** `DELETE`\n    \n- **Endpoint:** `/api/users/:userId`\n    \n\n**cURL:**\n\n```\ncurl -X DELETE \\\n  http://localhost:3000/api/users/{{userId}}\n\n ```\n\n---\n\n### **6\\. Obtener Tareas Asignadas a un Usuario**\n\n- **Descripción:** Recupera todas las tareas asignadas a un usuario específico.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/users/:userId/assigned-tasks`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/users/{{userId}}/assigned-tasks\n\n ```"
+		},
+		{
+			"name": "Project Requests",
+			"item": [
+				{
+					"name": "Create a project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_name\": \"Proyecto Alpha\",\n    \"project_description\": \"Descripción del Proyecto Alpha\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get al projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a project by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_name\": \"Proyecto Alpha Actualizado\",\n    \"project_description\": \"Descripción actualizada del proyecto\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects/{{projectId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/projects/{{projectId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get epic by projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/projects/{{projectId}}/epics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"{{projectId}}",
+								"epics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get task by project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/projects/{{projectId}}/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"{{projectId}}",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## **Proyectos**\n\n### **1\\. Crear un Nuevo Proyecto**\n\n- **Descripción:** Crea un nuevo proyecto.\n    \n- **Método:** `POST`\n    \n- **Endpoint:** `/api/projects`\n    \n\n**cURL:**\n\n```\ncurl -X POST \\\n  http://localhost:3000/api/projects \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"project_name\": \"Proyecto Alpha\",\n    \"project_description\": \"Descripción del Proyecto Alpha\"\n  }'\n\n ```\n\n---\n\n### **2\\. Obtener Todos los Proyectos**\n\n- **Descripción:** Recupera una lista de todos los proyectos.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/projects`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/projects\n\n ```\n\n---\n\n### **3\\. Obtener un Proyecto por ID**\n\n- **Descripción:** Recupera los detalles de un proyecto específico por su ID.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/projects/:projectId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/projects/{{projectId}}\n\n ```\n\n---\n\n### **4\\. Actualizar un Proyecto**\n\n- **Descripción:** Actualiza la información de un proyecto existente.\n    \n- **Método:** `PUT`\n    \n- **Endpoint:** `/api/projects/:projectId`\n    \n\n**cURL:**\n\n```\ncurl -X PUT \\\n  http://localhost:3000/api/projects/{{projectId}} \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"project_name\": \"Proyecto Alpha Actualizado\",\n    \"project_description\": \"Descripción actualizada del proyecto\"\n  }'\n\n ```\n\n---\n\n### **5\\. Eliminar un Proyecto**\n\n- **Descripción:** Elimina un proyecto del sistema.\n    \n- **Método:** `DELETE`\n    \n- **Endpoint:** `/api/projects/:projectId`\n    \n\n**cURL:**\n\n```\ncurl -X DELETE \\\n  http://localhost:3000/api/projects/{{projectId}}\n\n ```\n\n---\n\n### **6\\. Obtener Épicas de un Proyecto**\n\n- **Descripción:** Recupera todas las épicas asociadas a un proyecto específico.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/projects/:projectId/epics`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/projects/{{projectId}}/epics\n\n ```\n\n---\n\n### **7\\. Obtener Tareas de un Proyecto**\n\n- **Descripción:** Recupera todas las tareas asociadas a un proyecto específico.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/projects/:projectId/tasks`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/projects/{{projectId}}/tasks\n\n ```"
+		},
+		{
+			"name": "Epic Requests",
+			"item": [
+				{
+					"name": "Create and associate epic to project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"epic_name\": \"Nueva Épica\",\n    \"epic_description\": \"Descripción de la nueva épica\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/epics/project/{{projectId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"epics",
+								"project",
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all epics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/epics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"epics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get epic by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/epics/{{epicId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"epics",
+								"{{epicId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update epic",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"epic_name\": \"Épica Actualizada\",\n    \"epic_description\": \"Descripción actualizada de la épica\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/epics/{{epicId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"epics",
+								"{{epicId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete an epic",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/epics/{{epicId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"epics",
+								"{{epicId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all epics by project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/epics/project/{{projectId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"epics",
+								"project",
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## **Épicas**\n\n### **1\\. Crear una Nueva Épica Asociada a un Proyecto**\n\n- **Descripción:** Crea una nueva épica y la asocia a un proyecto.\n    \n- **Método:** `POST`\n    \n- **Endpoint:** `/api/epics/project/:projectId`\n    \n\n**cURL:**\n\n```\ncurl -X POST \\\n  http://localhost:3000/api/epics/project/{{projectId}} \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"epic_name\": \"Nueva Épica\",\n    \"epic_description\": \"Descripción de la nueva épica\"\n  }'\n\n ```\n\n---\n\n### **2\\. Obtener Todas las Épicas**\n\n- **Descripción:** Recupera una lista de todas las épicas.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/epics`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/epics\n\n ```\n\n---\n\n### **3\\. Obtener una Épica por ID**\n\n- **Descripción:** Recupera los detalles de una épica específica por su ID.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/epics/:epicId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/epics/{{epicId}}\n\n ```\n\n---\n\n### **4\\. Actualizar una Épica**\n\n- **Descripción:** Actualiza la información de una épica existente.\n    \n- **Método:** `PUT`\n    \n- **Endpoint:** `/api/epics/:epicId`\n    \n\n**cURL:**\n\n```\ncurl -X PUT \\\n  http://localhost:3000/api/epics/{{epicId}} \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"epic_name\": \"Épica Actualizada\",\n    \"epic_description\": \"Descripción actualizada de la épica\"\n  }'\n\n ```\n\n---\n\n### **5\\. Eliminar una Épica**\n\n- **Descripción:** Elimina una épica del sistema.\n    \n- **Método:** `DELETE`\n    \n- **Endpoint:** `/api/epics/:epicId`\n    \n\n**cURL:**\n\n```\ncurl -X DELETE \\\n  http://localhost:3000/api/epics/{{epicId}}\n\n ```\n\n---\n\n### **6\\. Obtener Épicas de un Proyecto**\n\n- **Descripción:** Recupera todas las épicas asociadas a un proyecto específico.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/epics/project/:projectId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/epics/project/{{projectId}}\n\n ```"
+		},
+		{
+			"name": "Task Requests",
+			"item": [
+				{
+					"name": "create and associate task to project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"task_title\": \"Nueva Tarea\",\n    \"task_description\": \"Descripción de la nueva tarea\",\n    \"epic_id\": {{epicId}},  // Opcional\n    \"due_date\": \"2023-12-31T23:59:59Z\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/project/{{projectId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"project",
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get task by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/{{taskId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update a task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"task_title\": \"Tarea Actualizada\",\n    \"task_description\": \"Descripción actualizada de la tarea\",\n    \"epic_id\": {{epicId}},  // Opcional\n    \"due_date\": \"2024-01-31T23:59:59Z\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/{{taskId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/{{taskId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign task to user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/{{taskId}}/assign/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"{{taskId}}",
+								"assign",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "move task to new state",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/{{taskId}}/change-state/{{stateId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"{{taskId}}",
+								"change-state",
+								"{{stateId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users assigned to task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/{{taskId}}/assigned-users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"{{taskId}}",
+								"assigned-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get project tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/project/{{projectId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"project",
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tasks by epic",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/epic/{{epicId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"epic",
+								"{{epicId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tasks by state",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/tasks/state/{{stateId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"tasks",
+								"state",
+								"{{stateId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## **Tareas**\n\n### **1\\. Crear una Nueva Tarea Asociada a un Proyecto**\n\n- **Descripción:** Crea una nueva tarea y la asocia a un proyecto (y opcionalmente a una épica).\n    \n- **Método:** `POST`\n    \n- **Endpoint:** `/api/tasks/project/:projectId`\n    \n\n**cURL:**\n\n```\ncurl -X POST \\\n  http://localhost:3000/api/tasks/project/{{projectId}} \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"task_title\": \"Nueva Tarea\",\n    \"task_description\": \"Descripción de la nueva tarea\",\n    \"epic_id\": {{epicId}},  // Opcional\n    \"due_date\": \"2023-12-31T23:59:59Z\"\n  }'\n\n ```\n\n**Nota:** Si no deseas asociar la tarea a una épica, puedes omitir el campo `epic_id`.\n\n---\n\n### **2\\. Obtener Todas las Tareas**\n\n- **Descripción:** Recupera una lista de todas las tareas.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/tasks`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/tasks\n\n ```\n\n---\n\n### **3\\. Obtener una Tarea por ID**\n\n- **Descripción:** Recupera los detalles de una tarea específica por su ID.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/tasks/:taskId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/tasks/{{taskId}}\n\n ```\n\n---\n\n### **4\\. Actualizar una Tarea**\n\n- **Descripción:** Actualiza la información de una tarea existente.\n    \n- **Método:** `PUT`\n    \n- **Endpoint:** `/api/tasks/:taskId`\n    \n\n**cURL:**\n\n```\ncurl -X PUT \\\n  http://localhost:3000/api/tasks/{{taskId}} \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"task_title\": \"Tarea Actualizada\",\n    \"task_description\": \"Descripción actualizada de la tarea\",\n    \"epic_id\": {{epicId}},  // Opcional\n    \"due_date\": \"2024-01-31T23:59:59Z\"\n  }'\n\n ```\n\n---\n\n### **5\\. Eliminar una Tarea**\n\n- **Descripción:** Elimina una tarea del sistema.\n    \n- **Método:** `DELETE`\n    \n- **Endpoint:** `/api/tasks/:taskId`\n    \n\n**cURL:**\n\n```\ncurl -X DELETE \\\n  http://localhost:3000/api/tasks/{{taskId}}\n\n ```\n\n---\n\n### **6\\. Asignar una Tarea a un Usuario**\n\n- **Descripción:** Asigna una tarea a un usuario específico.\n    \n- **Método:** `POST`\n    \n- **Endpoint:** `/api/tasks/:taskId/assign/:userId`\n    \n\n**cURL:**\n\n```\ncurl -X POST \\\n  http://localhost:3000/api/tasks/{{taskId}}/assign/{{userId}}\n\n ```\n\n---\n\n### **7\\. Cambiar el Estado de una Tarea**\n\n- **Descripción:** Cambia el estado de una tarea a un nuevo estado.\n    \n- **Método:** `PUT`\n    \n- **Endpoint:** `/api/tasks/:taskId/change-state/:stateId`\n    \n\n**cURL:**\n\n```\ncurl -X PUT \\\n  http://localhost:3000/api/tasks/{{taskId}}/change-state/{{stateId}}\n\n ```\n\n---\n\n### **8\\. Obtener Usuarios Asignados a una Tarea**\n\n- **Descripción:** Recupera una lista de usuarios asignados a una tarea específica.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/tasks/:taskId/assigned-users`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/tasks/{{taskId}}/assigned-users\n\n ```\n\n---\n\n### **9\\. Obtener Tareas de un Proyecto**\n\n- **Descripción:** Recupera todas las tareas asociadas a un proyecto específico.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/tasks/project/:projectId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/tasks/project/{{projectId}}\n\n ```\n\n---\n\n### **10\\. Obtener Tareas de una Épica**\n\n- **Descripción:** Recupera todas las tareas asociadas a una épica específica.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/tasks/epic/:epicId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/tasks/epic/{{epicId}}\n\n ```\n\n---\n\n### **11\\. Obtener Tareas por Estado**\n\n- **Descripción:** Recupera todas las tareas que se encuentran en un estado específico.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/tasks/state/:stateId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/tasks/state/{{stateId}}\n\n ```"
+		},
+		{
+			"name": "State Requests",
+			"item": [
+				{
+					"name": "create new state",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state_name\": \"En Revisión\",\n    \"state_order\": 3\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/task-states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task-states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all states",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/task-states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task-states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get state by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/task-states/{{stateId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task-states",
+								"{{stateId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update state",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"state_name\": \"En Revisión (Actualizado)\",\n    \"state_order\": 3\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/task-states/{{stateId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task-states",
+								"{{stateId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete state",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/task-states/{{stateId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"task-states",
+								"{{stateId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## **Estados**\n\n### **1\\. Crear un Nuevo Estado de Tarea**\n\n- **Descripción:** Crea un nuevo estado para las tareas.\n    \n- **Método:** `POST`\n    \n- **Endpoint:** `/api/task-states`\n    \n\n**cURL:**\n\n```\ncurl -X POST \\\n  http://localhost:3000/api/task-states \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"state_name\": \"En Revisión\",\n    \"state_order\": 3\n  }'\n\n ```\n\n---\n\n### **2\\. Obtener Todos los Estados de Tarea**\n\n- **Descripción:** Recupera una lista de todos los estados disponibles para las tareas.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/task-states`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/task-states\n\n ```\n\n---\n\n### **3\\. Obtener un Estado de Tarea por ID**\n\n- **Descripción:** Recupera los detalles de un estado específico por su ID.\n    \n- **Método:** `GET`\n    \n- **Endpoint:** `/api/task-states/:stateId`\n    \n\n**cURL:**\n\n```\ncurl -X GET \\\n  http://localhost:3000/api/task-states/{{stateId}}\n\n ```\n\n---\n\n### **4\\. Actualizar un Estado de Tarea**\n\n- **Descripción:** Actualiza la información de un estado existente.\n    \n- **Método:** `PUT`\n    \n- **Endpoint:** `/api/task-states/:stateId`\n    \n\n**cURL:**\n\n```\ncurl -X PUT \\\n  http://localhost:3000/api/task-states/{{stateId}} \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"state_name\": \"En Revisión (Actualizado)\",\n    \"state_order\": 3\n  }'\n\n ```\n\n---\n\n### **5\\. Eliminar un Estado de Tarea**\n\n- **Descripción:** Elimina un estado del sistema.\n    \n- **Método:** `DELETE`\n    \n- **Endpoint:** `/api/task-states/:stateId`\n    \n\n**cURL:**\n\n```\ncurl -X DELETE \\\n  http://localhost:3000/api/task-states/{{stateId}}\n\n ```\n\n**Nota:** No se puede eliminar un estado si hay tareas asociadas a él."
+		},
+		{
+			"name": "Security Request",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"swords\",\n    \"password\": \"password123\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "- **Método:** `POST`\n    \n- **URL:** `http://localhost:3000/api/auth/login`\n    \n\n### **Solicitud**\n\n``` shell\ncurl -X POST \\\n  http://localhost:3000/api/auth/login \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"username\": \"jdoe\",\n    \"password\": \"password123\"\n  }\n\n ```\n\n### **Explicación**\n\n- **username**: El nombre de usuario del usuario que intenta iniciar sesión.\n    \n- **password**: La contraseña en texto plano.\n    \n\n### **Respuesta Esperada**\n\n- **Código de estado:** `200 OK`\n    \n\n{ \"message\": \"Inicio de sesión exitoso\", \"user\": { \"user_id\": 1, \"username\": \"jdoe\", \"email\": \"[jdoe@example.com](https://mailto:jdoe@example.com)\", \"name\": \"John Doe\", \"role\": \"USER\", \"created_at\": \"2024-11-27T12:00:00.000Z\", \"updated_at\": \"2024-11-27T12:00:00.000Z\" } }\n\n### **Respuesta en Caso de Error**\n\n- **Código de estado:** `401 Unauthorized`\n    \n- jsonCopy code{ \"message\": \"Credenciales inválidas\"}"
+		}
+	]
+}
